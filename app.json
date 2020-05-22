@@ -1,12 +1,16 @@
 {
   "pages":[
+    "pages/mainpage/mainpage",
+    "pages/createmeal/createmeal",
+    "pages/joinmeal/joinmeal",
+    "pages/group/group",
     "pages/index/index",
     "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "约饭吗",
     "navigationBarTextStyle":"black"
   },
   "style": "v2",

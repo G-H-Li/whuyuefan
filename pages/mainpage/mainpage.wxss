@@ -1,0 +1,29 @@
+/* pages/mainpage/mainpage.wxss */
+
+.head{
+  display: flex;
+  padding: 30rpx;
+}
+
+.headitem{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headimage{
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.buttonbox{
+  display: flex;
+}
+
+.buttonitem{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

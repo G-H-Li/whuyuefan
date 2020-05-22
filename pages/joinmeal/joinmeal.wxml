@@ -1,0 +1,24 @@
+<!--pages/joinmeal/joinmeal.wxml-->
+<view>
+  <!--标题-->
+  <view class="title">
+    <text class="titleName">加入约饭</text>
+  </view>
+  <!--表单项目-->
+  <view class="formitem">
+    <view class="subitem">约饭号：</view>
+    <input name="inputID" style="background-color: #ddFFFF" placeholder="请在这里输入" />
+  </view>
+
+  <view class="formitem">
+    <view class="subitem">真实姓名：</view>
+    <input name="inputName" style="background-color: #ddFFFF" placeholder="请在这里输入" />
+  </view>
+
+  <view>
+    <button form-type="submit" bindtap="jumpToGroup" style="primary" plain="true">
+    加入约饭
+    </button>
+  </view>
+
+</view>

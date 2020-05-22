@@ -1,0 +1,27 @@
+<!--pages/mainpage/mainpage.wxml-->
+<view>
+<!--显示用户头像和昵称-->
+  <view class="head">
+    <view class="headitem">
+      <open-data type="userAvatarUrl" class="headimage"></open-data>
+    </view>
+    <view class="headitem">
+      <open-data type="userNickName"></open-data>
+    </view>
+  </view>
+
+  <!--两个按钮（发起约饭）（加入约饭）-->
+  <view class="buttonbox">
+    <view class="buttonitem">
+      <button bindtap="jumpToCreate" type="primary" plain="true">
+      发起约饭
+      </button>
+    </view>
+    <view class="buttonitem">
+      <button bindtap="jumpToJoin" type="primary" plain="true">
+      加入约饭
+      </button>
+    </view>
+  </view>
+
+</view>

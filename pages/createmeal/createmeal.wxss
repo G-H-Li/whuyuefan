@@ -1,0 +1,32 @@
+/* pages/createmeal/createmeal.wxss */
+
+.formitem{
+  margin-top: 80rpx;
+  margin-bottom: 80rpx;
+  display: flex;
+}
+
+.subitem{
+  display: flex;
+  margin-bottom: 5rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.title{
+  margin-top: 20px;
+  height: 40px;
+  text-align: center;
+}
+
+.titleName{
+  margin-left: 40px;
+  margin-right: 40px;
+  height: 80rpx;
+  font-size: 40rpx;
+  background-color: #EED2EE;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}

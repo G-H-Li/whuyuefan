@@ -1,0 +1,34 @@
+<!--pages/createmeal/createmeal.wxml-->
+<view>
+  <!--标题-->
+  <view class="title">
+    <text class="titleName">发起约饭</text>
+  </view>
+  <!--表单项目-->
+  <view class="formitem">
+    <view class="subitem">约饭主题：</view>
+    <input name="inputID" style="background-color: #ddFFFF" placeholder="请在这里输入" />
+  </view>
+
+  <view class="formitem">
+    <view class="subitem">约饭时间：</view>
+    <input name="inputName" style="background-color: #ddFFFF" placeholder="请在这里输入" />
+  </view>
+
+  <view class="formitem">
+    <view class="subitem">约饭类型：</view>
+    <input name="inputName" style="background-color: #ddFFFF" placeholder="请在这里输入" />
+  </view>
+
+  <view class="formitem">
+    <view class="subitem">约饭地点：</view>
+    <input name="inputName" style="background-color: #ddFFFF" placeholder="请在这里输入" />
+  </view>
+
+  <view>
+    <button form-type="submit" bindtap="jumpToGroup" style="primary" plain="true">
+    发起约饭
+    </button>
+  </view>
+
+</view>
