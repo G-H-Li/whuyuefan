@@ -1,6 +1,8 @@
 {
   "pages":[
     "pages/mainpage/mainpage",
+    "pages/test/test",
+
     "pages/createmeal/createmeal",
     "pages/joinmeal/joinmeal",
     "pages/group/group",

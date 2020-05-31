@@ -1,18 +1,24 @@
-// pages/group/group.js
+// pages/test/test.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
     items: [{
+      title:"渣男聚会",
       place:"海底捞",
       memberNum:10,
-      type:"火锅",
-      time:"12:30",
-    }],
+      date:"2016-1-1",
+    },
+  {
+    title:"渣女聚会",
+    place:"星湖园",
+    memberNum:4,
+    date:"2018-12-1",
+  }],
   },
+
 
   /**
    * 生命周期函数--监听页面加载

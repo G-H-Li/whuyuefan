@@ -31,9 +31,57 @@
   width: 48%;
 }
 
-.title{
+
+
+.tabletitle{
   padding: 20rpx;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+
+
+
+/*时间线部分*/
+
+.list {
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx;
+}
+
+.item {
+  padding: 20rpx;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  width: 100%;
+}
+
+.text {
+  background-color: rgb(157, 221, 255);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  line-height: 30px;
+}
+
+.stamp {
+  font-size: 30rpx;
+  color: darkgray;
+
+  margin: 5rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 35rpx;
+  text-align: left;
+  padding: 0rpx;
+}
+.container{
+  background-color: rgb(243, 255, 214);
 }

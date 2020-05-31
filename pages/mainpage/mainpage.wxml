@@ -1,35 +1,48 @@
 <!--pages/mainpage/mainpage.wxml-->
 <view>
-<!--显示用户头像和昵称-->
-  <view class="head">
-    <view class="headitem">
-      <open-data type="userAvatarUrl" class="headimage"></open-data>
-    </view>
-    <view class="headitem">
-      <open-data type="userNickName"></open-data>
-    </view>
-  </view>
 
-  <!--两个按钮（发起约饭）（加入约饭）-->
-  <view class="buttonbox">
-    <view class="buttonitem">
-      <button bindtap="jumpToCreate" type="primary" plain="true">
-      发起约饭
-      </button>
-    </view>
-    <view class="buttonitem">
-      <button bindtap="jumpToJoin" type="primary" plain="true">
-      加入约饭
-      </button>
-    </view>
-  </view>
+	<!--显示用户头像和昵称-->
+	<view class="head">
+		<view class="headitem">
+			<open-data type="userAvatarUrl" class="headimage"></open-data>
+		</view>
+		<view class="headitem">
+			<open-data type="userNickName"></open-data>
+		</view>
+	</view>
 
-<!--约饭时间线-->
-  <view class="timealbe">
-   <view class="title">
-   约饭时间线
-   </view>
-  
-  </view>
+	<!--两个按钮（发起约饭）（加入约饭）-->
+	<view class="buttonbox">
+		<view class="buttonitem">
+			<button bindtap="jumpToCreate" type="primary" plain="true">
+				发起约饭
+			</button>
+		</view>
+		<view class="buttonitem">
+			<button bindtap="jumpToJoin" type="primary" plain="true">
+				加入约饭
+			</button>
+		</view>
+	</view>
+
+	<!--约饭时间线-->
+	<view class="timealbe">
+		<view class="tabletitle">
+			约饭时间线
+		</view>
+	</view>
+
+	<view class="container list">
+		<block wx:for="{{items}}" wx:key="*this">
+			<view class="item" data-title="{{item.title}}">
+				<view class="text">
+					<text class="title">标题：{{item.title}}</text>
+					<view class="stamp">地点：{{item.place}}</view>
+					<view class="stamp">人数：{{item.memberNum}}人</view>
+					<view class="stamp">日期：{{item.date}}</view>
+				</view>
+			</view>
+		</block>
+	</view>
 
 </view>
