@@ -1,1 +1,40 @@
 /* pages/group/group.wxss */
+.title{
+  margin-top: 20px;
+  height: 40px;
+  text-align: center;
+}
+
+.titleName{
+  margin-left: 40px;
+  margin-right: 40px;
+  height: 80rpx;
+  font-size: 40rpx;
+  background-color: #EED2EE;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.border_bottom{
+  border-bottom: 5rpx solid #000;
+  padding: 20rpx;
+}
+
+.head{
+  display: flex;
+  padding: 30rpx;
+}
+
+.headitem{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headimage{
+  width: 150rpx;
+  height: 150rpx;
+}

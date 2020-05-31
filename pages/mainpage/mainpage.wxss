@@ -19,6 +19,8 @@
 
 .buttonbox{
   display: flex;
+  padding: 5rpx;
+  justify-content: space-between;
 }
 
 .buttonitem{
@@ -26,4 +28,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 48%;
+}
+
+.title{
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
