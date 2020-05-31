@@ -24,4 +24,12 @@
     </view>
   </view>
 
+<!--约饭时间线-->
+  <view class="timealbe">
+   <view class="title">
+   约饭时间线
+   </view>
+  
+  </view>
+
 </view>

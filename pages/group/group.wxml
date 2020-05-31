@@ -1,2 +1,17 @@
 <!--pages/group/group.wxml-->
-<text>群组页面</text>
+<view>
+ <view class="title">
+   <text class="titlename"> 群组</text>
+   <view class="border_bottom"></view>
+ </view>
+
+    <view class="head">
+    <view class="headitem">
+      <open-data type="userAvatarUrl" class="headimage"></open-data>
+    </view>
+    <view class="headitem">
+      <open-data type="userNickName"></open-data>
+    </view>
+  </view>
+
+</view>
