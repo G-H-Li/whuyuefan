@@ -1,90 +1,129 @@
 <!--pages/group/group.wxml-->
-<view>
-	<view class="tui-table-view">
-		<view class="tui-col-3">
-			<!--(1,1)-->
-			<view>空白</view>
-		</view>
-		<view class="tui-col-3">
-			<!--(1,2)群主-->
-			<view class="head">
-				<view class="headitem">
-					<open-data type="userAvatarUrl" mode="aspectFit"></open-data>
-				</view>
-				<view class="headitem">
-					<open-data type="userNickName"></open-data>
-				</view>
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+<view slot="backText" bindtap="jump2Main">返回</view>
+<view slot="content">
+	<view class="text-df">
+    <text class="text-white">约饭号：{{fanInfo.fanid}}</text>
+  </view>
+</view>
+</cu-custom>
+<!--本次约饭相关信息概览，占据页面上部分-->
+<view class="padding-right-sm padding-left-sm padding-tb flex bg-white shadow-warp text-center">
+	<!--显示时间和地点-->
+	<view class="flex flex-sub flex-direction text-lg">
+		<picker mode="date" value="{{fanInfo.date}}" start="{{fanInfo.date}}" end="{{endate}}" bindchange="DateChange">
+			<text class="text-cut text-black">日期:{{fanInfo.date}}</text>
+			<text class="cuIcon-unfold"></text>
+		</picker>
+	</view>
+	<view class="flex flex-sub flex-direction text-lg">
+		<picker mode="time" value="{{fanInfo.time}}" start="00:00" end="24:00" bindchange="TimeChange">
+			<text class="text-black">时间:{{fanInfo.time}}</text>
+			<text class="cuIcon-unfold"></text>
+		</picker>
+	</view>
+	<view class="flex flex-sub text-lg">
+		<text class="text-cut text-black">地点:{{fanInfo.place}}</text>
+		<text class="cuIcon-locationfill text-orange" bindtap="jumpToLocationChoose"></text>
+	</view>
+</view>
+
+<!--约饭相关人员，中间产生的信息-->
+<view class="flex justify-between margin-top">
+	<!--左边头像信息-->
+	<view class="flex flex-sub flex-direction align-start">
+		<view class="padding-sm">
+			<view wx:for="{{5}}" wx:key>
+				<view class="cu-avatar round xl" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);"/>
+				<view class="solid-bottom text-sm padding">
+        	<text class="text-grey">姓名</text>
+      	</view>
 			</view>
 		</view>
-		<view class="tui-col-3">
-			<!--(1,3)-->
-			<view>空白</view>
+	</view>
+	<!--中间的聊天信息-->
+	<view class="flex-treble bg-white">
+		<view class="cu-chat">
+			<block wx:for="{{msgs}}" wx:key="*this" wx:for-item="msg">
+				<view class="cu-info">
+					{{msg.plainText}}
+					<text class="text-blue">{{msg.blueText}}</text>
+				</view>
+			</block>
 		</view>
-		<view class="tui-col-3">
-			<!--(2,1)-->
-			<view class="head">
-				<view class="headitem">
-					<image mode="aspectFit" src="../../image/timg.png"></image>
-				</view>
-				<view class="headitem">亚索</view>
-			</view>
-			<view class="head">
-				<view class="headitem">
-					<image mode="aspectFit" src="../../image/timg (1).png"></image>
-				</view>
-				<view class="headitem">金克丝</view>
-			</view>
-			<view class="head">
-				<view class="headitem">
-					<image mode="aspectFit" src="../../image/timg (1).png"></image>
-				</view>
-				<view class="headitem">金克丝</view>
+	</view>
+	<!--右边头像信息-->
+	<view class="flex flex-sub flex-direction align-end">
+		<view class="padding-sm text-center">
+			<view wx:for="{{5}}" wx:key>
+				<view class="cu-avatar round xl" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);"/>
+				<view class="solid-bottom text-sm padding">
+        	<text class="text-grey">姓名</text>
+      	</view>
 			</view>
 		</view>
-		<view class="tui-col-3">
-			<!--(2,2)-->
-			<view class="container list">
-				<block wx:for="{{items}}" wx:key="*this">
-					<view class="item" data-title="{{item.title}}">
-						<view class="text">
-							<view class="stamp">地点：{{item.place}}</view>
-							<view class="stamp">类型：{{item.type}}</view>
-							<view class="stamp">人数：{{item.memberNum}}人</view>
-							<view class="stamp">时间：{{item.time}}</view>
-						</view>
+	</view>
+</view>
+
+<!--底部相关功能键-->
+<view class="box">
+	<view class="cu-bar btn-group">
+		<button class="cu-btn bg-blue shadow-blur round lg" disabled="{{btnPoll}}" bindtap="Poll" data-target="RadioModal">投票</button>
+		<button class="cu-btn bg-blue shadow-blur round lg" disabled="{{btnPay}}" bindtap="Pay" data-target="Image">收付款</button>
+	</view>
+	<view class="cu-bar btn-group">
+		<button class="cu-btn bg-green shadow-blur round lg" disabled="{{btnStart}}" bindtap="Start" data-target="bottomModal" data-msg="确定开始约饭？" data-fun="StartFun">开始</button>
+		<button class="cu-btn bg-red shadow-blur round lg" disabled="{{btnQuit}}" bindtap="Quit" data-target="bottomModal" data-msg="确定退出此群组？" data-fun="jump2Main">退出群组</button>
+	</view>
+	<!--退出群组和开始模态框-->
+	<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
+		<view class="cu-dialog">
+			<view class="cu-bar bg-white">
+				<view class="action text-green" bindtap="{{modalFun}}">确定</view>
+				<view class="action text-blue" bindtap="hideModal">取消</view>
+			</view>
+			<view class="padding-xl text-lg">
+				{{modalMsg}}
+			</view>
+		</view>
+	</view>
+	<!--收付款模态框-->
+	<view class="cu-modal {{modalName=='Image'?'show':''}}">
+		<view class="cu-dialog">
+			<view class="cu-bar bg-white text-center">
+				<view class="action margin-0 flex-sub solid-left">收款码</view>
+			</view>
+			<view class="bg-img" style="background-image: url('../../image/pay.jpg');height:400px;">
+				<view class="cu-bar justify-end text-white">
+					<view class="action" bindtap="hideModal">
+						<text class="cuIcon-close "></text>
 					</view>
-				</block>
-			</view>
-		</view>
-		<view class="tui-col-3">
-			<!--(2,3)-->
-			<view class="head">
-				<view class="headitem">
-					<image mode="aspectFit" src="../../image/timg.png"></image>
 				</view>
-				<view class="headitem">亚索</view>
 			</view>
-			<view class="head">
-				<view class="headitem">
-					<image mode="aspectFit" src="../../image/timg.png"></image>
+			<view class="cu-bar bg-cyan">
+				<view class="action margin-0 flex-sub solid-left" bindtap="hideModal">我知道了</view>
+			</view>
+		</view>
+	</view>
+	<!--投票模态框-->
+	<view class="cu-modal {{modalName=='RadioModal'?'show':''}}">
+		<view class="cu-dialog">
+			<view class="cu-bar bg-white solid-bottom">
+				<view class="action margin-0 flex-sub solid-left">请投票</view>
+			</view>
+			<radio-group class="block">
+				<view class="cu-list menu text-left">
+        	<view class="cu-item" wx:for="{{5}}" wx:key>
+						<label class="flex justify-between align-center flex-sub">
+							<view class="flex-sub">选项 {{index +1}}</view>
+							<radio class="round"></radio>
+						</label>
+					</view>
 				</view>
-				<view class="headitem">亚索</view>
+			</radio-group>
+			<view class="cu-bar solid-top bg-green">
+				<view class="action margin-0 flex-sub solid-left" bindtap="hideModal">提交</view>
 			</view>
-			<view class="head">
-				<view class="headitem">
-					<image mode="aspectFit" src="../../image/timg (1).png"></image>
-				</view>
-				<view class="headitem">金克丝</view>
-			</view>
-		</view>
-		<view class="tui-col-3">
-			<button class="buttonitem" type="primary" size="mini" plain="true">发起投票</button>
-		</view>
-		<view class="tui-col-3">
-			<button class="buttonitem" type="primary" size="mini" plain="true">发起收款</button>
-		</view>
-		<view class="tui-col-3 ">
-			<button class="buttonitem" type="primary" size="mini" plain="true">解散群组</button>
 		</view>
 	</view>
 </view>

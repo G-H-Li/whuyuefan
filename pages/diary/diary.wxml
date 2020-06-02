@@ -1,0 +1,67 @@
+<!--pages/diary/diary.wxml-->
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">约饭记录</view>
+</cu-custom>
+<!--显示约饭记录:表单-->
+<form>
+  <!--显示约饭相关信息-->
+  <view class="cu-form-group margin-top">
+		<view class="title">约饭号：{{fanInfo.fanid}}</view>
+	</view>
+  <view class="cu-form-group">
+		<view class="title">主题：{{fanInfo.theme}}</view>
+	</view>
+  <view class="cu-form-group">
+		<view class="title">日期：{{fanInfo.date}}</view>
+	</view>
+  <view class="cu-form-group">
+		<view class="title">时间：{{fanInfo.time}}</view>
+	</view>
+  <view class="cu-form-group">
+		<view class="title">地点：{{fanInfo.place}}</view>
+	</view>
+  <view class="cu-form-group">
+		<view class="title">人数：{{fanInfo.membernum}}</view>
+	</view>
+  <!--评价餐厅等级-->
+  <view class="cu-form-group margin-top">
+		<view class="title">餐厅评价：{{restaurantComment}} 分</view>
+    <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+			<view class="picker">
+				{{index?picker[index]:"未评"}}分
+			</view>
+		</picker>
+	</view>
+  <!--评价本次约饭-->
+  <view class="cu-form-group margin-top">
+    <view class="title">启用编辑</view>
+    <switch class="red sm" bindChange="ModelNameChange"></switch>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">约饭纪念</view>
+    <textarea maxlength="-1" bindinput="textareaAInput" value="{{fanComment}}" disabled="{{!modalName}}"></textarea>
+  </view>
+  <!--上传相关纪念图片-->
+  <view class="cu-bar bg-white margin-top">
+		<view class="action">
+			图片上传
+		</view>
+		<view class="action">
+			{{imgList.length}}/4
+		</view>
+	</view>
+  <view class="cu-form-group">
+		<view class="grid col-4 grid-square flex-sub">
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view>
+</form>

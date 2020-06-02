@@ -1,87 +1,35 @@
 /* pages/mainpage/mainpage.wxss */
-
-.head{
-  display: flex;
-  padding: 30rpx;
-}
-
-.headitem{
-  flex: 1;
+/* 背景 */
+.UCenter-bg{
+  background-color: rgb(166, 227, 233);
+  height: 350rpx;
   display: flex;
   justify-content: center;
-  align-items: center;
-}
-
-.headimage{
-  width: 150rpx;
-  height: 150rpx;
-}
-
-.buttonbox{
-  display: flex;
-  padding: 5rpx;
-  justify-content: space-between;
-}
-
-.buttonitem{
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 48%;
-}
-
-
-
-.tabletitle{
-  padding: 20rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-
-
-/*时间线部分*/
-
-.list {
-  display: flex;
+  padding-top: 20rpx;
+  overflow: hidden;
+  position: relative;
   flex-direction: column;
-  padding: 40rpx;
+  align-items: center;
+  color: rgb(3, 48, 48);
+  font-weight: 300;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
 
-.item {
-  padding: 20rpx;
-  display: flex;
-  flex-direction: row;
-  text-align: left;
+.UCenter-bg .gif-wave{
+  position: absolute;
   width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  mix-blend-mode: screen;  
+  height: 100rpx;   
 }
 
-.text {
-  background-color: rgb(157, 221, 255);
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  line-height: 30px;
-}
-
-.stamp {
-  font-size: 30rpx;
-  color: darkgray;
-
-  margin: 5rpx;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.title {
-  font-size: 35rpx;
-  text-align: left;
-  padding: 0rpx;
-}
-.container{
-  background-color: rgb(243, 255, 214);
+.UCenter-bg .user-avatar{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: 5rpx;
+  justify-content: center;
 }

@@ -1,48 +1,102 @@
 <!--pages/mainpage/mainpage.wxml-->
 <view>
-
-	<!--显示用户头像和昵称-->
-	<view class="head">
-		<view class="headitem">
-			<open-data type="userAvatarUrl" class="headimage"></open-data>
+	<!--顶部用户相关信息-->
+	<view class="UCenter-bg">
+		<!--显示用户头像和昵称-->
+		<view class="user-avatar">
+			<open-data type="userAvatarUrl"></open-data>
 		</view>
-		<view class="headitem">
+		<view class="text-xl">
 			<open-data type="userNickName"></open-data>
 		</view>
+		<image src="/image/wave.gif" mode="scaleToFill" class="gif-wave"></image>
 	</view>
 
 	<!--两个按钮（发起约饭）（加入约饭）-->
-	<view class="buttonbox">
-		<view class="buttonitem">
-			<button bindtap="jumpToCreate" type="primary" plain="true">
+	<view class="padding flex bg-white shadow-warp">
+		<view class="flex flex-sub flex-direction">
+			<button bindtap="jumpToCreate" class="cu-btn bg-blue round lg shadow">
 				发起约饭
 			</button>
 		</view>
-		<view class="buttonitem">
-			<button bindtap="jumpToJoin" type="primary" plain="true">
+		<view class="flex flex-sub flex-direction">
+			<button bindtap="jumpToJoin" class="cu-btn bg-blue round lg shadow">
 				加入约饭
 			</button>
 		</view>
 	</view>
-
-	<!--约饭时间线-->
-	<view class="timealbe">
-		<view class="tabletitle">
-			约饭时间线
-		</view>
-	</view>
-
-	<view class="container list">
-		<block wx:for="{{items}}" wx:key="*this">
-			<view class="item" data-title="{{item.title}}">
-				<view class="text">
-					<text class="title">标题：{{item.title}}</text>
-					<view class="stamp">地点：{{item.place}}</view>
-					<view class="stamp">人数：{{item.memberNum}}人</view>
-					<view class="stamp">日期：{{item.date}}</view>
+	<!--时间轴-->
+	<scroll-view scroll-y="true">
+		<view class="cu-timeline">
+			<!--对每个数据进行遍历-->
+			<block wx:for="{{items}}" wx:key="*this" wx:for-item="item">
+			<wxs module="tools">
+				var color = function(state){
+					if(state == 0){
+						return "green";
+					}
+					if(state == 1){
+						return "blue";
+					}
+					if(state == -1){
+						return "red";
+					}
+					if(state == 2){
+						return "grey";
+					}
+				};
+				var cuIcon = function(state){
+					if(state == 0){
+						return "cuIcon-noticefill";
+					}
+					if(state == 1){
+						return "";
+					}
+					if(state == -1){
+						return "cuIcon-attentionforbidfill";
+					}
+					if(state == 2){
+						return "cuIcon-evaluate_fill";
+					}
+				};
+				var statement = function(state){
+					if(state == 0){
+						return "发起中";
+					}
+					if(state == 1){
+						return "已开始";
+					}
+					if(state == -1){
+						return "已取消";
+					}
+					if(state == 2){
+						return "已结束";
+					}
+				};
+				module.exports = {
+						color:color,
+						cuIcon:cuIcon,
+						state:statement,
+				}
+			</wxs>
+				<view class="cu-time">{{item.date}}</view>
+				<view class="cu-item text-{{tools.color(item.state)}} {{tools.cuIcon(item.state)}}">
+				<!--每个栏目中的样式及内容-->
+					<view class="content bg-{{tools.color(item.state)}} shadow-blur" bindtap="TimelineNavigator" data-state="{{item.state}}">
+						<view class="cu-capsule radius">
+							<view class="cu-tag bg-cyan">{{tools.state(item.state)}}</view>
+							<view class="cu-tag line-white">{{item.time}}</view>
+						</view>
+						<view>
+							<view class="text-df">
+								<text>主题：{{item.theme}}\n</text>
+								<text>地点：{{item.place}}\n</text>
+								<text>人数：{{item.memberNum}} 人</text>							
+							</view>
+						</view>
+					</view>
 				</view>
-			</view>
-		</block>
-	</view>
-
+			</block>
+		</view>
+	</scroll-view>
 </view>

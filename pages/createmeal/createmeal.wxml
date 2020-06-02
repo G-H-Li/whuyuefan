@@ -1,34 +1,39 @@
 <!--pages/createmeal/createmeal.wxml-->
-<view>
-  <!--标题-->
-  <view class="title">
-    <text class="titleName">发起约饭</text>
-  </view>
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">发起约饭</view>
+</cu-custom>
+<form>
   <!--表单项目-->
-  <view class="formitem">
-    <view class="subitem">约饭主题：</view>
-    <input name="inputID" style="background-color: #ddFFFF" placeholder="请在这里输入" />
+  <view class="cu-form-group margin-top">
+    <view class="title">约饭主题：</view>
+    <input placeholder="{{theme}}" focus="true" bindblur="InputConfirm"/>
+  </view>
+  <view class="cu-form-group margin-top">
+    <view class="title">约饭日期：</view>
+    <picker mode="date" value="{{date}}" start="{{date}}" end="{{endate}}" bindchange="DateChange">
+			<view class="picker">
+				{{date}}
+			</view>
+		</picker>
+  </view>
+  <view class="cu-form-group margin-top">
+    <view class="title">约饭时间：</view>
+    <picker mode="time" value="{{time}}" start="00:00" end="24:00"  bindchange="TimeChange">
+			<view class="picker">
+				{{time}}
+			</view>
+		</picker>
+  </view>
+  <view class="cu-form-group margin-top">
+    <view class="title">约饭地址：</view>
+		<input value="{{place}}" disabled="true"></input>
+		<text class="cuIcon-locationfill text-orange" bindtap="jumpToLocationChoose"></text>
   </view>
 
-  <view class="formitem">
-    <view class="subitem">约饭时间：</view>
-    <input name="inputName" style="background-color: #ddFFFF" placeholder="请在这里输入" />
-  </view>
-
-  <view class="formitem">
-    <view class="subitem">约饭类型：</view>
-    <input name="inputName" style="background-color: #ddFFFF" placeholder="请在这里输入" />
-  </view>
-
-  <view class="formitem">
-    <view class="subitem">约饭地点：</view>
-    <input name="inputName" style="background-color: #ddFFFF" placeholder="请在这里输入" />
-  </view>
-
-  <view>
-    <button form-type="submit" bindtap="jumpToGroup" style="primary" plain="true">
+  <view class="padding flex flex-direction">
+    <button class="cu-btn bg-blue margin-tb-sm lg" form-type="submit" bindtap="jumpToGroup">
     发起约饭
     </button>
   </view>
-
-</view>
+</form>

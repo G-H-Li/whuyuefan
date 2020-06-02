@@ -1,16 +1,36 @@
 // pages/joinmeal/joinmeal.js
-Page({
+// todo：提前访问后端获取相应初始值
+var fanId = null;
+var nickName = "";
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-
+    fanid: fanId,
+    nickname: nickName
   },
 
   jumpToGroup(e){
-    wx.navigateTo({
-      url: '/pages/group/group',
+    // 将相关数据传输到后端
+    if(this.data.fanid != "" && this.data.nickname != "")
+    {
+      wx.navigateTo({
+        url: '/pages/group/group',
+      })
+    }
+  },
+
+  FanidChange: function(e){
+    this.setData({
+      fanid: e.detail.value
+    })
+  },
+
+  NicknameChange: function(e){
+    this.setData({
+      nickname: e.detail.value
     })
   },
 

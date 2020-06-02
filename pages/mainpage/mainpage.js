@@ -5,18 +5,37 @@ Page({
    * 页面的初始数据
    */
   data: {
-
     items: [{
-      title:"渣男聚会",
+      theme:"儿童节聚餐",
       place:"海底捞",
       memberNum:10,
-      date:"2016-1-1",
+      date:"2020-6-1",
+      time:"17:00",
+      state:0,
+    },
+    {
+      theme:"生日聚会",
+      place:"江南小观园",
+      memberNum:8,
+      date:"2020-5-20",
+      time:"8:00",
+      state:1,
+    },
+    {
+      theme:"大作业誓师会",
+      place:"东北饺子馆",
+      memberNum:4,
+      date:"2020-5-1",
+      time:"10:00",
+      state:2,
     },
   {
-    title:"渣女聚会",
+    theme:"渣女聚会",
     place:"星湖园",
     memberNum:4,
     date:"2018-12-1",
+    time:"10:00",
+    state:-1,
   }],
 
   },
@@ -33,59 +52,40 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  TimelineNavigator(e){
+    if(e.currentTarget.dataset.state == 0 || e.currentTarget.dataset.state == 1){
+      this.jumpToGroup();
+    }
+    if(e.currentTarget.dataset.state == 2)
+    {
+      this.jumpToDiary();
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  //跳转至群组
+  jumpToGroup(){
+    wx.navigateTo({
+      url: '/pages/group/group',
+    })
+  },
+  //跳转至日志页面
+  jumpToDiary(){
+    wx.navigateTo({
+      url: '/pages/diary/diary',
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  onShareAppMessage: function (){
+    return {
+      title: '一个神奇的约饭小程序',
+      imageUrl: '/image/basicprofile.png',
+      path:'/pages/mainpage/mainpage'
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
 
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
